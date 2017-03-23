@@ -18,6 +18,7 @@ aria.Utils = aria.Utils || {};
    *  true if a focusable element is found and focus is set.
    */
   aria.Utils.focusFirstDescendant = function (element) {
+    console.log('focus first descendant');
     for (var i = 0; i < element.childNodes.length; i++) {
       var child = element.childNodes[i];
       if (aria.Utils.attemptFocus(child)
@@ -244,11 +245,11 @@ aria.Utils = aria.Utils || {};
   }; // end replace
 
   aria.Dialog.prototype.addListeners = function () {
-    document.addEventListener('focus', this.trapFocus, true);
+    // document.addEventListener('focus', this.trapFocus, true);
   }; // end addListeners
 
   aria.Dialog.prototype.removeListeners = function () {
-    document.removeEventListener('focus', this.trapFocus, true);
+    // document.removeEventListener('focus', this.trapFocus, true);
   }; // end removeListeners
 
   aria.Dialog.prototype.trapFocus = function (event) {
