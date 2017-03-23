@@ -238,7 +238,11 @@ aria.Utils = aria.Utils || {};
       newFocusFirst) {
     var closedDialog = aria.getCurrentDialog();
     console.log('before close: ', document.activeElement);
-    closedDialog.close();
+    aria.OpenDialogList.pop();
+    this.removeListeners();
+    aria.Utils.remove(this.preNode);
+    aria.Utils.remove(this.postNode);
+    this.dialogNode.className = 'hidden';
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
     console.log('after close: ', document.activeElement);
     var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
