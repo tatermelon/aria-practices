@@ -245,11 +245,11 @@ aria.Utils = aria.Utils || {};
   }; // end replace
 
   aria.Dialog.prototype.addListeners = function () {
-    // document.addEventListener('focus', this.trapFocus, true);
+    document.addEventListener('focus', this.trapFocus, true);
   }; // end addListeners
 
   aria.Dialog.prototype.removeListeners = function () {
-    // document.removeEventListener('focus', this.trapFocus, true);
+    document.removeEventListener('focus', this.trapFocus, true);
   }; // end removeListeners
 
   aria.Dialog.prototype.trapFocus = function (event) {
@@ -257,10 +257,14 @@ aria.Utils = aria.Utils || {};
       return;
     }
     var currentDialog = aria.getCurrentDialog();
+    console.log('focus target: ', event.target);
+    console.log('dialog node: ', currentDialog.dialogNode);
     if (currentDialog.dialogNode.contains(event.target)) {
+      console.log('current dialog contains: ', event.target);
       currentDialog.lastFocus = event.target;
     }
     else {
+      console.log('current dialog missing: ', event.target);
       aria.Utils.focusFirstDescendant(currentDialog.dialogNode);
       if (currentDialog.lastFocus == document.activeElement) {
         aria.Utils.focusLastDescendant(currentDialog.dialogNode);
