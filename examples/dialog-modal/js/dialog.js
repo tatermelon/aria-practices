@@ -169,15 +169,18 @@ aria.Utils = aria.Utils || {};
     this.clearDialog();
     this.dialogNode.className = 'default_dialog'; // make visible
 
+    console.log('before show: ', document.activeElement);
     var layer = document.getElementById('dialog_layer');
     layer.className = 'showing';
 
+    console.log('after show: ', document.activeElement);
     if (this.focusFirst) {
       this.focusFirst.focus();
     }
     else {
       aria.Utils.focusFirstDescendant(this.dialogNode);
     }
+    console.log('after focus: ', document.activeElement);
 
     this.lastFocus = document.activeElement;
   }; // end Dialog constructor
@@ -232,8 +235,10 @@ aria.Utils = aria.Utils || {};
   aria.Dialog.prototype.replace = function (newDialogId, newFocusAfterClosed,
       newFocusFirst) {
     var closedDialog = aria.getCurrentDialog();
+    console.log('before close: ', document.activeElement);
     closedDialog.close();
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
+    console.log('after close: ', document.activeElement);
     var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
   }; // end replace
 
