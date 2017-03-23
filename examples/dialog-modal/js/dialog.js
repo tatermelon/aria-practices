@@ -54,6 +54,7 @@ aria.Utils = aria.Utils || {};
    *  true if element is focused.
    */
   aria.Utils.attemptFocus = function (element) {
+    console.log('attempt focus: ', element);
     if (!aria.Utils.isFocusable(element)) {
       return false;
     }
